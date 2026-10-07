@@ -13,3 +13,5 @@ Securing Linux server at a commercial level to prove I have the skills needed in
 **Why:** Preventing unauthorized user from getting into the system via unauthorized devices.
 **Changes:** | Created an SSH Private key stored in Authorized Device| Changed SSH configuration on the Server to refuse Password logins|
 **Verification:** - Config: [00-hardening.conf](/configs/ssh/00-hardening.conf)
+**Findings:** With password authentication disabled, failed login attempts no longer appear as authentication failures. Attackers disconnect before authenticating, which Wazuh logs as level-4 "connection reset" events, and its built-in brute-force rule doesn't count those. I wrote a custom rule (local_rules.xml) that raises a level-10 alert when one IP produces 5 of these disconnects within 60 seconds. [Wazuh rule 100101 firing](docs/image/100101.png)
+
