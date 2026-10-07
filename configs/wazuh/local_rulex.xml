@@ -1,0 +1,18 @@
+<!-- Local rules -->
+<!-- Copyright (C) 2015, Wazuh Inc. -->
+
+<group name="nmap,">
+  <rule id="100100" level="3">
+    <decoded_as>json</decoded_as>
+    <field name="scanner">nmap</field>
+    <description>Nmap: $(nmap_ip) has $(nmap_port)/$(nmap_protocol) open ($(nmap_service))</description>
+  </rule>
+</group>
+
+<group name="sshd,custom_ssh,">
+  <rule id="100101" level="10" frequency="5" timeframe="60">
+    <if_matched_sid>5762</if_matched_sid>
+    <same_source_ip />
+    <description>Repeated SSH pre-auth disconnects from same IP - possible brute force against key-only SSH</description>
+  </rule>
+</group>
