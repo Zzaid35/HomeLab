@@ -12,4 +12,4 @@ Securing Linux server at a commercial level to prove I have the skills needed in
 ## P1.01 SSH: keys only, no password login, no root login
 **Why:** Preventing unauthorized user from getting into the system via unauthorized devices.
 **Changes:** | Created an SSH Private key stored in Authorized Device| Changed SSH configuration on the Server to refuse Password logins|
-**Verification:** - Config: [00-hardening.conf](../configs/ssh/00-hardening.conf)
+**Verification:** - Config: [00-hardening.conf](main/configs/ssh/00-hardening.conf)
