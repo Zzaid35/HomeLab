@@ -37,3 +37,17 @@ Current Firewall:
 [Listening Services](inventory.md#listening-services)
 
 Default Deny enabled to stop any unauthorized connections from entering,- Docker-published ports bypass UFW; restriction pending,
+
+## P1.03 Fail2ban Installation, Configuration and Verification
+
+### Configuration 
+
+Setup Fail2ban, Created a new configuration with aggressive sshd, Bans the attempted Intruder within 5 attempts, After banned the packets from that IP are simply dropped. [Fail2ban Configuration](configs/fail2ban)
+
+### Test & Verification
+
+Attempted to ssh from another device, After 5 attempts Fail2ban dropped all incoming packets and logged it in, Additonally Wazuh also noticed and reported a bruteforce attempt.
+[Fail2ban Status](docs/image/Fail2banLog.png) & [Wazuh reporting](docs/image/WazuhFail2ban.png)
+
+
+
