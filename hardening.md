@@ -36,4 +36,4 @@ Current Firewall:
 
 [Listening Services](inventory.md#listening-services)
 
-Default Deny enabled to stop any unauthorized connections from entering
+Default Deny enabled to stop any unauthorized connections from entering,- Docker-published ports bypass UFW; restriction pending,
