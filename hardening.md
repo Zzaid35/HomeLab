@@ -41,12 +41,11 @@ Default Deny enabled to stop any unauthorized connections from entering,- Docker
 ## P1.03 Fail2ban Installation, Configuration and Verification
 
 ### Configuration 
-
-Setup Fail2ban, Created a new configuration with aggressive sshd, Bans the attempted Intruder within 5 attempts, After banned the packets from that IP are simply dropped. [Fail2ban Configuration](configs/fail2ban)
+Installed fail2ban and created jail.local to override the defaults: 5 failed attempts within 10 minutes results in a 1-hour ban. The sshd jail runs in aggressive mode because the server is keys-only, so normal mode, which mostly matches password failures, would miss failed key attempts and preauth disconnects. Banned IPs have their packets silently dropped. [Fail2ban Configuration](configs/fail2ban)
 
 ### Test & Verification
 
-Attempted to ssh from another device, After 5 attempts Fail2ban dropped all incoming packets and logged it in, Additonally Wazuh also noticed and reported a bruteforce attempt.
+Ran repeated failed SSH logins from a second LAN device (192.168.1.171). After the fifth failure, fail2ban banned the IP and further connection attempts timed out. Wazuh independently detected the activity, escalating from individual failed-login alerts (rule 5710, level 5) to a brute-force alert (rule 5712, level 10). Wazuh handled detection and fail2ban handled response.
 [Fail2ban Status](docs/image/Fail2banLog.png) & [Wazuh reporting](docs/image/WazuhFail2ban.png)
 
 
